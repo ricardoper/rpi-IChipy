@@ -1,0 +1,23 @@
+{
+  "name": "IChipy",
+  "version": "0.1.0",
+  "description": "IChipy: Raspberry Pi libraries that help you to control external hardware. You can use this libraries with Node-Red too.",
+  "main": "IChipy.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ricardoper/rpi-IChipy"
+  },
+  "keywords": [
+    "node-red", "rpi", "IChipy",
+    "74HC165", "Shift Register", "Parallel In", "Serial Out"
+  ],
+  "author": "Ricardo Pereira",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/ricardoper/rpi-IChipy/issues"
+  },
+  "homepage": "https://github.com/ricardoper/rpi-IChipy#readme"
+}

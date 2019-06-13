@@ -1,0 +1,165 @@
+<!--
+
+-- IChipy --
+
+74HC165 Parallel-in / Serial-out Shift Register for Node-Red
+
+https://github.com/ricardoper/rpi-IChipy
+
+
+MIT License
+
+Copyright (c) 2019 Ricardo Pereira
+
+-->
+<script type="text/javascript">
+    RED.nodes.registerType('74HC165', {
+        category: 'IChipy',
+        color: '#E6E0F8',
+        defaults: {
+            name: {
+                value: ""
+            },
+            bit: {
+                value: "",
+                required: true,
+                validate: RED.validators.number()
+            },
+            serialOut: {
+                value: 11,
+                required: true,
+                validate: RED.validators.number()
+            },
+            loadData: {
+                value: 13,
+                required: true,
+                validate: RED.validators.number()
+            },
+            clock: {
+                value: 15,
+                required: true,
+                validate: RED.validators.number()
+            },
+            bits: {
+                value: 8,
+                required: true,
+                validate: RED.validators.number()
+            }
+        },
+        outputs: 1,
+        icon: "font-awesome/fa-arrow-circle-right",
+        label: function () {
+            var icName = "74HC165";
+
+            if (this.name) {
+                return this.name;
+            } else if (this.name == "" && parseInt(this.bit) >= 0) {
+                return icName + " (" + this.bit + ")";
+            }
+
+            return icName;
+        },
+        labelStyle: function () {
+            return this.name ? "node_label_italic" : "";
+        }
+    });
+</script>
+
+<script type="text/x-red" data-template-name="74HC165">
+    <div class="form-row">
+        <label for="node-input-name">
+            <i class="fa fa-tag"></i>
+            &nbsp;&nbsp;&nbsp;Name
+        </label>
+        <input type="text" id="node-input-name" placeholder="Name">
+    </div>
+
+    <div class="form-row" style="color:#C70;">
+        <label for="node-input-bit">
+            <i class="fa fa-sign-in"></i>
+            &nbsp;&nbsp;&nbsp;Input Bit
+        </label>
+        <input type="text" id="node-input-bit" placeholder="Input Bit" style="border-color:#FC6; background-color:#FFD;">
+    </div>
+
+    <div class="form-row" style="color:#C70;">
+        <label for="node-input-bits">
+            <i class="fa fa-list-ol"></i>
+            &nbsp;&nbsp;&nbsp;Inputs Bits
+        </label>
+        <input type="text" id="node-input-bits" placeholder="Inputs Bits" style="border-color:#FC6; background-color:#FFD;">
+    </div>
+
+    <div><hr></div>
+
+    <div class="form-row">
+        <label for="node-input-serialOut">
+            <i class="fa fa-sign-out"></i>
+            &nbsp;&nbsp;&nbsp;SerialOut
+        </label>
+        <input type="text" id="node-input-serialOut" placeholder="SerialOut">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-loadData">
+            <i class="fa fa-download"></i>
+            &nbsp;&nbsp;&nbsp;LoadData
+        </label>
+        <input type="text" id="node-input-loadData" placeholder="LoadData">
+    </div>
+
+    <div class="form-row">
+        <label for="node-input-clock">
+            <i class="fa fa-clock-o"></i>
+            &nbsp;&nbsp;&nbsp;Clock
+        </label>
+        <input type="text" id="node-input-clock" placeholder="Clock">
+    </div>
+</script>
+
+<script type="text/x-red" data-help-name="74HC165">
+    <p><b>74HC165 Parallel-in / Serial-out Shift Register</b></p>
+    <p>Reads all the inputs of this component and shows the state of each bit in the Node-Red Dashboard.</p>
+    <p style="margin-bottom: 25px;">For more details about this component, please <a href="https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf" target="_new">download the datasheet</a>.</p>
+
+    <h3>Outputs</h3>
+    <dl class="message-properties" style="margin-bottom: 25px;">
+        <dt>
+            id
+            <span class="property-type">string</span>
+        </dt>
+        <dd style="margin-bottom: 15px;"> the node ID.</dd>
+
+        <dt>
+            bit
+            <span class="property-type">number</span>
+        </dt>
+        <dd style="margin-bottom: 15px;"> the input bit of the component [0 ... (bits-1)].</dd>
+
+        <dt>
+            payload
+            <span class="property-type">string</span>
+        </dt>
+        <dd style="margin-bottom: 15px;"> the payload will be a <code>true</code> or <code>false</code> depending of the input state.</dd>
+
+        <dt>
+            storageId
+            <span class="property-type">string</span>
+        </dt>
+        <dd> the configuration hash ID.</dd>
+    </dl>
+
+    <h3>Details</h3>
+    <p>This library/node is <code>extremely efficient</code> and <b>only uses one Python process per StorageId</b> (configuration hash ID).</p>
+    <p>This library was tested with 16 devices simultaneously (128 input bits in total) and it only uses one Python process for all the input bits.</p>
+    <p style="margin-bottom: 25px;">Requires the <code>RPi.GPIO</code> python library version 0.5.10 (or better) in order to work.</p>
+
+    <hr style="margin-bottom: 25px;">
+
+    <h3>References</h3>
+    <ul>
+        <li>
+            <a href="https://assets.nexperia.com/documents/data-sheet/74HC_HCT165.pdf" target="_new">74HC165 Datasheet</a> - Parallel-in / Serial-out Shift Register
+        </li>
+    </ul>
+</script>
